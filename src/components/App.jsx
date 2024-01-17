@@ -1,4 +1,3 @@
-// App.jsx
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -7,8 +6,8 @@ import ContactForm from './ContactForm';
 import Filter from './Filter';
 import ContactList from './ContactList';
 import Navigation from './Navigation';
-import Register from './Register'; 
-import Login from './Login'; 
+import Register from './Register';
+import Login from './Login';
 import { fetchContacts } from './contactsSlice';
 
 const App = () => {
@@ -19,8 +18,8 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <div>
-          <h1>Phonebook</h1>
+        <div style={{ fontFamily: 'Arial, sans-serif', textAlign: 'center' }}>
+          <h1 style={{ color: '#333' }}>Phonebook</h1>
           <Navigation />
           <Routes>
             <Route path="/register" element={<Register />} />

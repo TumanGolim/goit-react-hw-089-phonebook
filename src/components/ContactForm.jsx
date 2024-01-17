@@ -44,18 +44,51 @@ const ContactForm = () => {
   };
 
   return (
-    <div>
-      <h3>Name</h3>
-      <input type="text" name="name" value={name} onChange={handleNameChange} />
-      <h3>Number</h3>
-      <input
-        type="tel"
-        name="number"
-        value={number}
-        onChange={handleNumberChange}
-      />
+    <div
+      style={{
+        maxWidth: '300px',
+        margin: '20px auto',
+        padding: '20px',
+        border: '1px solid #ccc',
+      }}
+    >
+      <h3>Contact Form</h3>
+      <div style={{ marginBottom: '10px' }}>
+        <label style={{ display: 'block', marginBottom: '5px' }}>Name:</label>
+        <input
+          type="text"
+          name="name"
+          value={name}
+          onChange={handleNameChange}
+          style={{ width: '100%', padding: '8px' }}
+        />
+      </div>
+      <div style={{ marginBottom: '10px' }}>
+        <label
+          htmlFor="number"
+          style={{ display: 'block', marginBottom: '5px' }}
+        >
+          Number:
+        </label>
+        <input
+          type="tel"
+          name="number"
+          value={number}
+          onChange={handleNumberChange}
+          style={{ width: '100%', padding: '8px' }}
+        />
+      </div>
       <div>
-        <button type="button" onClick={handleAddContact}>
+        <button
+          type="button"
+          onClick={handleAddContact}
+          style={{
+            padding: '8px',
+            background: '#007bff',
+            color: '#fff',
+            border: 'none',
+          }}
+        >
           Add Contact
         </button>
       </div>

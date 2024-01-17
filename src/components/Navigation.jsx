@@ -4,16 +4,30 @@ import UserMenu from './UserMenu';
 
 const Navigation = () => {
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/register">Register</Link>
+    <nav
+      style={{ marginBottom: '20px', background: '#f5f5f5', padding: '10px' }}
+    >
+      <ul style={{ listStyleType: 'none', margin: 0, padding: 0 }}>
+        <li style={{ display: 'inline-block', marginRight: '10px' }}>
+          <Link
+            to="/register"
+            style={{ textDecoration: 'none', color: '#333' }}
+          >
+            Register
+          </Link>
         </li>
-        <li>
-          <Link to="/login">Login</Link>
+        <li style={{ display: 'inline-block', marginRight: '10px' }}>
+          <Link to="/login" style={{ textDecoration: 'none', color: '#333' }}>
+            Login
+          </Link>
         </li>
-        <li>
-          <Link to="/contacts">Contacts</Link>
+        <li style={{ display: 'inline-block', marginRight: '10px' }}>
+          <Link
+            to="/contacts"
+            style={{ textDecoration: 'none', color: '#333' }}
+          >
+            Contacts
+          </Link>
         </li>
       </ul>
       <UserMenu />

@@ -1,15 +1,13 @@
-// UserMenu.jsx
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { logout } from './authSlice'; // Update the path accordingly
+import { logout } from './authSlice'; 
 
 const UserMenu = () => {
   const authState = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
   if (!authState || !authState.user) {
-    // Handle the case where auth state or user is not yet loaded
-    return <div>Loading...</div>;
+    return 
   }
 
   const { user } = authState;
