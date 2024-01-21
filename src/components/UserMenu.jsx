@@ -1,13 +1,13 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { logout } from './authSlice'; 
+import { logout } from './authSlice';
 
 const UserMenu = () => {
   const authState = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
-  if (!authState || !authState.user) {
-    return 
+  if (!authState.user) {
+    return null; 
   }
 
   const { user } = authState;
