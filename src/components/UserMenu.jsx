@@ -6,8 +6,8 @@ const UserMenu = () => {
   const authState = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
-  if (!authState.user) {
-    return null; 
+  if (!authState || !authState.user) {
+    return;
   }
 
   const { user } = authState;

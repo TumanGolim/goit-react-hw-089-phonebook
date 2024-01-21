@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const apiBaseUrl = 'https://connections-api.herokuapp.com';
+
 const initialState = {
   items: [],
   isLoading: false,
@@ -8,13 +10,9 @@ const initialState = {
   filter: '',
 };
 
-const fetchContactsUrl = 'https://65a1919e42ecd7d7f0a6c414.mockapi.io/contacts';
-const addContactUrl = 'https://65a1919e42ecd7d7f0a6c414.mockapi.io/contacts';
-const deleteContactUrl = 'https://65a1919e42ecd7d7f0a6c414.mockapi.io/contacts';
-
 export const fetchContacts = createAsyncThunk('contacts/fetchAll', async () => {
   try {
-    const response = await axios.get(fetchContactsUrl);
+    const response = await axios.get(`${apiBaseUrl}/contacts`);
     return response.data;
   } catch (error) {
     throw error;
@@ -25,7 +23,7 @@ export const addContact = createAsyncThunk(
   'contacts/addContact',
   async newContact => {
     try {
-      const response = await axios.post(addContactUrl, newContact);
+      const response = await axios.post(`${apiBaseUrl}/contacts`, newContact);
       return response.data;
     } catch (error) {
       throw error;
@@ -37,7 +35,7 @@ export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   async contactId => {
     try {
-      await axios.delete(`${deleteContactUrl}/${contactId}`);
+      await axios.delete(`${apiBaseUrl}/contacts/${contactId}`);
       return contactId;
     } catch (error) {
       throw error;
