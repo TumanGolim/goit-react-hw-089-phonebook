@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import ContactForm from './ContactForm';
@@ -23,7 +23,7 @@ const App = () => {
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/contacts" element={<ContactForm />}>
+          <Route path="/contacts" element={<Navigate to="/contacts" replace />}>
             <Route index element={<h2>Contacts</h2>} />
             <Route path="filter" element={<Filter />} />
             <Route path="list" element={<ContactList />} />
