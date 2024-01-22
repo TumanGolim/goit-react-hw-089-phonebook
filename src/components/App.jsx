@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store';
-import ContactForm from './ContactForm';
 import Filter from './Filter';
 import ContactList from './ContactList';
 import Navigation from './Navigation';

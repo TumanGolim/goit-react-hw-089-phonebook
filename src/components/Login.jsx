@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { loginUser } from './authSlice';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
 
   const handleEmailChange = e => {
     setEmail(e.target.value);
@@ -15,9 +18,8 @@ const Login = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    console.log('Login data:', { email, password });
+    dispatch(loginUser({ email, password }));
   };
-
   return (
     <div
       style={{

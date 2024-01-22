@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { registerUser } from './authSlice';
 
 const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
 
   const handleUsernameChange = e => {
     setUsername(e.target.value);
@@ -20,7 +23,7 @@ const Register = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    console.log('Registration data:', { username, email, password });
+    dispatch(registerUser({ username, email, password }));
   };
 
   return (

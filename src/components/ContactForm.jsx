@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
-import { addContact } from './contactsSlice';
+import { addContact, updateContact } from './contactsSlice';
 
-const ContactForm = () => {
+const ContactForm = ({ contactIdToUpdate }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.items);
+
+  const existingContact = contactIdToUpdate
+    ? contacts.find(contact => contact.id === contactIdToUpdate)
+    : null;
+
+  React.useEffect(() => {
+    if (existingContact) {
+      setName(existingContact.name);
+      setNumber(existingContact.number);
+    }
+  }, [existingContact]);
 
   const handleNameChange = event => {
     setName(event.target.value);
@@ -17,7 +28,7 @@ const ContactForm = () => {
     setNumber(event.target.value);
   };
 
-  const handleAddContact = () => {
+  const handleAddOrUpdateContact = () => {
     if (name.trim() === '' || number.trim() === '') {
       alert('Name and number cannot be empty');
       return;
@@ -37,10 +48,21 @@ const ContactForm = () => {
       number: number,
     };
 
-    dispatch(addContact(newContact));
+    if (existingContact) {
+      dispatch(
+        updateContact({
+          contactId: existingContact.id,
+          updatedData: newContact,
+        })
+      );
+      alert('Contact updated successfully');
+    } else {
+      dispatch(addContact(newContact));
+      alert('Contact added successfully');
+    }
+
     setName('');
     setNumber('');
-    alert('Contact added successfully');
   };
 
   return (
@@ -81,7 +103,7 @@ const ContactForm = () => {
       <div>
         <button
           type="button"
-          onClick={handleAddContact}
+          onClick={handleAddOrUpdateContact}
           style={{
             padding: '8px',
             background: '#007bff',
@@ -89,7 +111,7 @@ const ContactForm = () => {
             border: 'none',
           }}
         >
-          Add Contact
+          {existingContact ? 'Update Contact' : 'Add Contact'}
         </button>
       </div>
     </div>

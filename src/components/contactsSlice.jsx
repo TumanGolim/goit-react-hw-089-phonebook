@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const apiBaseUrl = 'https://connections-api.herokuapp.com';
+const apiBaseUrl = 'https://connections-api.herokuapp.com'; 
 
 const initialState = {
   items: [],
@@ -24,6 +24,21 @@ export const addContact = createAsyncThunk(
   async newContact => {
     try {
       const response = await axios.post(`${apiBaseUrl}/contacts`, newContact);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
+export const updateContact = createAsyncThunk(
+  'contacts/updateContact',
+  async ({ contactId, updatedData }) => {
+    try {
+      const response = await axios.patch(
+        `${apiBaseUrl}/contacts/${contactId}`,
+        updatedData
+      );
       return response.data;
     } catch (error) {
       throw error;
@@ -76,6 +91,21 @@ const contactsSlice = createSlice({
         state.error = null;
       })
       .addCase(addContact.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+      .addCase(updateContact.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(updateContact.fulfilled, (state, action) => {
+        state.items = state.items.map(contact =>
+          contact.id === action.payload.id ? action.payload : contact
+        );
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(updateContact.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
       })
