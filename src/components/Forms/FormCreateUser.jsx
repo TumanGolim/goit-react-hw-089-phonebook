@@ -1,59 +1,77 @@
 import { Component } from 'react'
 
-class FormCreateTodo extends Component {
+class FormCreateUser extends Component {
 	state = {
-		title: '',
-		description: '',
+		name: '',
+		lastName: '',
 	}
+	// handleChange = (event) => {
 
 	handleChange = ({ target: { value, name } }) => {
+		console.log('value :>> ', value)
+		// if (value === 'a') return
+		// if (value.includes('@') || value.includes('!')) return
+		// const result =validator(value)
+		// if(!result) return
 		this.setState({
 			[name]: value,
 		})
+		// if (name === 'email')
+		// 	this.setState({
+		// 		[name]: value,
+		// 	})
+		// else if (name === 'password')
+		// 	this.setState({
+		// 		password: value,
+		// 	})
+		// else
+		// 	this.setState({
+		// 		value1: value,
+		// 	})
 	}
 	handleSubmit = (e) => {
 		e.preventDefault()
-		this.props.createTodo(this.state)
-		this.setState({
-			title: '',
-			description: '',
-		})
+		// console.log(this.state)
+
+		this.props.sendUserData(this.state)
 	}
 	render() {
+		console.log('this.state :>> ', this.state)
 		return (
 			<form onSubmit={this.handleSubmit}>
 				<div className='mb-3'>
 					<label htmlFor='exampleInputEmail1' className='form-label'>
-						Title
+						Name
 					</label>
 					<input
-						name='title'
+						name='name'
 						type='text'
 						className='form-control'
 						id='exampleInputEmail1'
-						value={this.state.title}
+						aria-describedby='emailHelp'
+						value={this.state.email}
 						onChange={this.handleChange}
 					/>
 				</div>
 				<div className='mb-3'>
 					<label htmlFor='exampleInputPassword1' className='form-label'>
-						Description
+						Last Name
 					</label>
 					<input
-						name='description'
+						name='lastName'
 						type='text'
 						className='form-control'
 						id='exampleInputPassword1'
-						value={this.state.description}
+						value={this.state.password}
 						onChange={this.handleChange}
 					/>
 				</div>
 				<button type='submit' className='btn btn-primary'>
-					Create
+					Submit
 				</button>
 			</form>
 		)
 	}
 }
 
-export default FormCreateTodo
+export default FormCreateUser

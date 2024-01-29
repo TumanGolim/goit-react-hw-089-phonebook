@@ -1,9 +1,8 @@
 import { Component } from 'react'
 
-class FormCreateTodo extends Component {
+class FormCreateProduct extends Component {
 	state = {
 		title: '',
-		description: '',
 	}
 
 	handleChange = ({ target: { value, name } }) => {
@@ -13,11 +12,7 @@ class FormCreateTodo extends Component {
 	}
 	handleSubmit = (e) => {
 		e.preventDefault()
-		this.props.createTodo(this.state)
-		this.setState({
-			title: '',
-			description: '',
-		})
+		this.props.createProduct(this.state)
 	}
 	render() {
 		return (
@@ -35,19 +30,6 @@ class FormCreateTodo extends Component {
 						onChange={this.handleChange}
 					/>
 				</div>
-				<div className='mb-3'>
-					<label htmlFor='exampleInputPassword1' className='form-label'>
-						Description
-					</label>
-					<input
-						name='description'
-						type='text'
-						className='form-control'
-						id='exampleInputPassword1'
-						value={this.state.description}
-						onChange={this.handleChange}
-					/>
-				</div>
 				<button type='submit' className='btn btn-primary'>
 					Create
 				</button>
@@ -56,4 +38,4 @@ class FormCreateTodo extends Component {
 	}
 }
 
-export default FormCreateTodo
+export default FormCreateProduct
