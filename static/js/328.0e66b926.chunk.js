@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkgoit_react_hw_08_phonebook=self.webpackChunkgoit_react_hw_08_phonebook||[]).push([[328],{328:(e,o,t)=>{t.r(o),t.d(o,{default:()=>h});var s=t(791),c=t(689),a=t(184);const h=()=>{const{todoId:e}=(0,c.UO)();return(0,s.useEffect)((()=>{}),[e]),(0,a.jsx)("div",{children:"TodoDetailsPage"})}}}]);
+//# sourceMappingURL=328.0e66b926.chunk.js.map
